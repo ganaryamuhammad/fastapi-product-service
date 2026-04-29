@@ -7,6 +7,14 @@ app = FastAPI(
     version="1.0.0"
 )
 
+@app.get("/docs", include_in_schema=False)
+async def custom_swagger():
+    return get_swagger_ui_html(
+        openapi_url="/openapi.json",
+        title="Ganarya Product API Docs",
+        swagger_favicon_url="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"
+    )
+
 
 # =========================
 # Request Schema
