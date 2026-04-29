@@ -19,85 +19,112 @@ async def custom_swagger():
 
     html = get_swagger_ui_html(
         openapi_url="/openapi.json",
-        title="Ganarya API Documentation",
-        swagger_favicon_url="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"
+        title="Ganarya Enterprise API",
+        swagger_favicon_url="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
     ).body.decode("utf-8")
 
-    custom_css = """
+    corporate = """
     <style>
-        body {
-            background: linear-gradient(135deg, #0f172a, #111827);
-        }
+    body {
+        background: #f4f7fb !important;
+        font-family: Arial, sans-serif;
+    }
 
-        .topbar {
-            display: none !important;
-        }
+    .topbar {
+        display:none !important;
+    }
 
-        .swagger-ui .info {
-            margin: 30px 0;
-            padding: 25px;
-            background: rgba(255,255,255,0.04);
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
+    .swagger-ui .wrapper {
+        max-width: 1400px;
+    }
 
-        .swagger-ui .info .title {
-            color: #00ff99 !important;
-            font-size: 42px;
-            font-weight: bold;
-        }
+    .swagger-ui .info {
+        background: linear-gradient(90deg,#003366,#00509d);
+        padding: 28px;
+        border-radius: 14px;
+        color: white !important;
+        box-shadow: 0 8px 20px rgba(0,0,0,.12);
+        margin-bottom: 30px;
+    }
 
-        .swagger-ui .info p {
-            color: #cbd5e1 !important;
-        }
+    .swagger-ui .info .title {
+        color: white !important;
+        font-size: 42px !important;
+        font-weight: 700;
+    }
 
-        .swagger-ui .scheme-container {
-            background: rgba(255,255,255,0.03);
-            border-radius: 12px;
-            padding: 15px;
-        }
+    .swagger-ui .info .title::after {
+        content: " Enterprise Edition";
+        font-size: 16px;
+        margin-left: 10px;
+        background: #ffcc00;
+        color: #003366;
+        padding: 4px 10px;
+        border-radius: 20px;
+        vertical-align: middle;
+    }
 
-        .swagger-ui .opblock {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0,0,0,0.25);
-        }
+    .swagger-ui .info::before {
+        content:"Banking Grade API Documentation";
+        display:block;
+        margin-bottom:10px;
+        font-size:14px;
+        opacity:.9;
+    }
 
-        .swagger-ui .opblock-summary-path {
-            color: white !important;
-            font-weight: bold;
-        }
+    .swagger-ui .scheme-container {
+        background:white !important;
+        border-radius:12px;
+        box-shadow:0 3px 10px rgba(0,0,0,.08);
+    }
 
-        .swagger-ui .btn.execute {
-            background: #00ff99 !important;
-            color: black !important;
-            font-weight: bold;
-            border-radius: 8px;
-        }
+    .swagger-ui .opblock {
+        border-radius:12px !important;
+        margin-bottom:18px !important;
+        box-shadow:0 2px 10px rgba(0,0,0,.06);
+        border:none !important;
+    }
 
-        .swagger-ui .response-col_status {
-            color: #00ff99 !important;
-        }
+    .swagger-ui .opblock-summary {
+        font-size:15px;
+        font-weight:600;
+    }
 
-        .ganarya-banner {
-            text-align:center;
-            color:white;
-            font-size:18px;
-            margin-top:20px;
-            margin-bottom:10px;
-            letter-spacing:2px;
-        }
+    .swagger-ui .btn.execute {
+        background:#00509d !important;
+        border:none !important;
+        color:white !important;
+        border-radius:8px;
+        font-weight:bold;
+    }
+
+    .swagger-ui .models {
+        background:white;
+        border-radius:12px;
+        box-shadow:0 2px 10px rgba(0,0,0,.05);
+    }
+
+    .swagger-ui input,
+    .swagger-ui textarea {
+        border-radius:8px !important;
+        border:1px solid #d1d5db !important;
+    }
+
+    .footer-note{
+        text-align:center;
+        margin:20px;
+        color:#64748b;
+        font-size:13px;
+    }
     </style>
 
-    <div class="ganarya-banner">
-        🚀 Powered by GANARYA • FastAPI • PostgreSQL • Docker • Jenkins
+    <div class="footer-note">
+       🚀 Powered by Ganarya Technology • FastAPI • PostgreSQL • Jenkins CI/CD
     </div>
     """
 
-    html = html.replace("</head>", custom_css + "</head>")
-
+    html = html.replace("</head>", corporate + "</head>")
     return HTMLResponse(html)
-
 # =========================
 # Request Schema
 # =========================
