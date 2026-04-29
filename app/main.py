@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from app.config.database import get_connection
 
 app = FastAPI(
-    title="Product Service",
+    title="Product Service GANARYA COOOL",
     version="1.0.0"
 )
 
