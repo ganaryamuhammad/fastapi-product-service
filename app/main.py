@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from app.config.database import get_connection
 
 app = FastAPI(
-    title="Ganarya Product Service API",
+    title="Ganarya Product Service API ",
     version="1.0.0",
     docs_url="/ganarya-docs",          # disable docs bawaan
     redoc_url="/ganarya-redoc"
@@ -19,7 +19,7 @@ async def custom_swagger():
 
     html = get_swagger_ui_html(
         openapi_url="/openapi.json",
-        title="Ganarya Enterprise API",
+        title="Ganarya Enterprise API // 🚀 Powered by Ganarya Technology • FastAPI • PostgreSQL • Jenkins CI/CD",
         swagger_favicon_url="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
     ).body.decode("utf-8")
 
