@@ -25,8 +25,8 @@ async def custom_swagger():
 
     corporate = """
     <style>
-    body {
-        background: #f4f7fb !important;
+body {
+        background: #f5f5f5 !important;
         font-family: Arial, sans-serif;
     }
 
@@ -110,11 +110,16 @@ async def custom_swagger():
         border:1px solid #d1d5db !important;
     }
 
-    .footer-note{
+.footer-note{
         text-align:center;
-        margin:20px;
-        color:#64748b;
-        font-size:13px;
+        margin:30px 0;
+        color:#374151;
+        font-size:16px;
+        font-weight:600;
+        padding:15px;
+        background:rgba(255,255,255,0.8);
+        border-radius:10px;
+        box-shadow:0 2px 10px rgba(0,0,0,0.1);
     }
     </style>
 
