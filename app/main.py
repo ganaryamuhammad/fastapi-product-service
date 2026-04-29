@@ -128,7 +128,7 @@ body {
     </div>
     """
 
-    html = html.replace("</head>", corporate + "</head>")
+    html = html.replace("</body>", corporate + "</body>")
     return HTMLResponse(html)
 # =========================
 # Request Schema
