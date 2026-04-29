@@ -1,20 +1,102 @@
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+from fastapi.openapi.docs import get_swagger_ui_html
 from pydantic import BaseModel
 from app.config.database import get_connection
 
 app = FastAPI(
-    title="Product Service GANARYA COOOL",
-    version="1.0.0"
+    title="Ganarya Product Service API",
+    version="1.0.0",
+    docs_url="/ganarya-docs",          # disable docs bawaan
+    redoc_url="/ganarya-redoc"
 )
 
-@app.get("/docs", include_in_schema=False)
+# =========================
+# Custom Swagger UI
+# =========================
+@app.get("/ganarya-docs", include_in_schema=False)
 async def custom_swagger():
-    return get_swagger_ui_html(
-        openapi_url="/openapi.json",
-        title="Ganarya Product API Docs",
-        swagger_favicon_url="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"
-    )
 
+    html = get_swagger_ui_html(
+        openapi_url="/openapi.json",
+        title="Ganarya API Documentation",
+        swagger_favicon_url="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"
+    ).body.decode("utf-8")
+
+    custom_css = """
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a, #111827);
+        }
+
+        .topbar {
+            display: none !important;
+        }
+
+        .swagger-ui .info {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .swagger-ui .info .title {
+            color: #00ff99 !important;
+            font-size: 42px;
+            font-weight: bold;
+        }
+
+        .swagger-ui .info p {
+            color: #cbd5e1 !important;
+        }
+
+        .swagger-ui .scheme-container {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .swagger-ui .opblock {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.25);
+        }
+
+        .swagger-ui .opblock-summary-path {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .swagger-ui .btn.execute {
+            background: #00ff99 !important;
+            color: black !important;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .swagger-ui .response-col_status {
+            color: #00ff99 !important;
+        }
+
+        .ganarya-banner {
+            text-align:center;
+            color:white;
+            font-size:18px;
+            margin-top:20px;
+            margin-bottom:10px;
+            letter-spacing:2px;
+        }
+    </style>
+
+    <div class="ganarya-banner">
+        🚀 Powered by GANARYA • FastAPI • PostgreSQL • Docker • Jenkins
+    </div>
+    """
+
+    html = html.replace("</head>", custom_css + "</head>")
+
+    return HTMLResponse(html)
 
 # =========================
 # Request Schema
@@ -39,7 +121,7 @@ class ProductUpdate(BaseModel):
 def home():
     return {
         "success": True,
-        "message": "Product Service Running"
+        "message": "Ganarya Product Service Running 🚀"
     }
 
 
