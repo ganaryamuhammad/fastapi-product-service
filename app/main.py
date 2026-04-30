@@ -4,11 +4,18 @@ from fastapi.openapi.docs import get_swagger_ui_html
 from pydantic import BaseModel
 from app.config.database import get_connection
 
+from fastapi import FastAPI
+
 app = FastAPI(
-    title="Ganarya Product Service API ",
+    title="Ganarya Product Service API 🚀",
     version="1.0.0",
-    docs_url="/ganarya-docs",          # disable docs bawaan
-    redoc_url="/ganarya-redoc"
+    docs_url="/ganarya-docs",
+    redoc_url="/ganarya-redoc",
+    description="""
+    <b>Powered by Ganarya Technology</b><br>
+    Product Service Documentation<br><br>
+    API ini digunakan untuk mengelola product service secara scalable & terintegrasi.
+    """
 )
 
 # =========================
